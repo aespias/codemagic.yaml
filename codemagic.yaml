@@ -5,9 +5,6 @@ workflows:
     environment:
       vars:
         BUILD_NUMBER: 1
-      node: 16.x
-      python: 3.8
-      working_directory: .
     scripts:
       - name: Install dependencies
         script: |
@@ -16,6 +13,6 @@ workflows:
           pip install buildozer
       - name: Build APK
         script: |
-          buildozer android debug
+          buildozer -v android debug
     artifacts:
       - build/*.apk
