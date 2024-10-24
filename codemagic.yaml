@@ -1,0 +1,21 @@
+workflows:
+  android:
+    name: Build Android APK with Buildozer
+    max_build_duration: 60
+    environment:
+      vars:
+        BUILD_NUMBER: 1
+      node: 16.x
+      python: 3.8
+      working_directory: .
+    scripts:
+      - name: Install dependencies
+        script: |
+          sudo apt-get update
+          sudo apt-get install -y libzbar-dev
+          pip install buildozer
+      - name: Build APK
+        script: |
+          buildozer android debug
+    artifacts:
+      - build/*.apk
