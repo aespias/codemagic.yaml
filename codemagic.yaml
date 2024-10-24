@@ -11,6 +11,8 @@ workflows:
           sudo apt-get update
           sudo apt-get install -y libzbar-dev python3 python3-pip
           pip install --upgrade buildozer cython
+          yes | sdkmanager --licenses
+          sdkmanager "build-tools;35.0.0" "platforms;android-31"
       - name: Build APK
         script: |
           buildozer -v android debug
