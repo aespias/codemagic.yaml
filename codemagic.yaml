@@ -8,9 +8,10 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          sudo apt-get update
-          sudo apt-get install -y libzbar-dev python3 python3-pip
-          pip install --upgrade buildozer cython
+          brew install zbar
+          brew install --cask android-sdk
+          export ANDROID_HOME=$HOME/Library/Android/sdk
+          export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
           yes | sdkmanager --licenses
           sdkmanager "build-tools;35.0.0" "platforms;android-31"
       - name: Build APK
