@@ -6,7 +6,11 @@ workflows:
       vars:
         BUILD_NUMBER: 1
     scripts:
-      - name: Install dependencies
+      - name: Install Java 8
+        script: |
+          brew install --cask temurin@8
+          brew link --force --overwrite temurin@8
+      - name: Install Android SDK
         script: |
           brew install zbar
           brew install --cask android-sdk
@@ -19,3 +23,4 @@ workflows:
           buildozer -v android debug
     artifacts:
       - build/*.apk
+
